@@ -34,6 +34,9 @@ interface GardenPlantingDao {
     @Query("SELECT EXISTS(SELECT 1 FROM garden_plantings WHERE plant_id = :plantId LIMIT 1)")
     fun isPlanted(plantId: String): Flow<Boolean>
 
+    @Query("SELECT * FROM  garden_plantings WHERE plant_id = :plantId LIMIT 1")
+    fun getGardenPlanting(plantId: String): Flow<GardenPlanting>
+
     /**
      * This query will tell Room to query both the [Plant] and [GardenPlanting] tables and handle
      * the object mapping.

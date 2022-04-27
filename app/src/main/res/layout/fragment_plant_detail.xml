@@ -104,9 +104,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_small"
-                    android:gravity="center_horizontal"
-                    android:clickable="true"
+                    android:clickable="false"
                     android:focusable="true"
+                    android:gravity="center_horizontal"
                     android:text="@{viewModel.plant.name}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -142,6 +142,19 @@
                     app:wateringText="@{viewModel.plant.wateringInterval}"
                     tools:text="every 7 days" />
 
+                <AutoCompleteTextView
+                    android:id="@+id/plant_responsible"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:completionHint="Responsible"
+                    android:text="@{viewModel.planting.responsible}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/plant_watering" />
+
                 <ImageView
                     android:id="@+id/gallery_nav"
                     android:layout_width="wrap_content"
@@ -162,13 +175,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_small"
-                    android:textIsSelectable="true"
                     android:minHeight="@dimen/plant_description_min_height"
+                    android:textIsSelectable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/plant_watering"
+                    app:layout_constraintTop_toBottomOf="@+id/plant_responsible"
                     app:renderHtml="@{viewModel.plant.description}"
                     tools:text="Details about the plant" />
 
