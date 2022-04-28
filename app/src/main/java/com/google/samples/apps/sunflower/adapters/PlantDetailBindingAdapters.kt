@@ -17,15 +17,18 @@
 package com.google.samples.apps.sunflower.adapters
 
 import android.text.method.LinkMovementMethod
+import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.samples.apps.sunflower.R
+import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModel
 
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
@@ -66,4 +69,19 @@ fun bindWateringText(textView: TextView, wateringInterval: Int) {
     )
 
     textView.text = quantityString
+}
+
+@BindingAdapter("responsibleComplete")
+fun bindResponsibleComplete(view: AutoCompleteTextView, viewModel: PlantDetailViewModel?) {
+    viewModel?.let { viewModel ->
+        view.addTextChangedListener { text ->
+            text?.let { text ->
+                var planting = viewModel.planting.value
+                planting?.let { planting ->
+                    planting.responsible = text.toString()
+                    viewModel.updatePlantOwner(planting)
+                }
+            }
+        }
+    }
 }

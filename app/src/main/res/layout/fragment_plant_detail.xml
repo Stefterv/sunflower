@@ -26,6 +26,9 @@
         <variable
             name="callback"
             type="com.google.samples.apps.sunflower.PlantDetailFragment.Callback" />
+        <variable
+            name="responsible"
+            type="com.google.samples.apps.sunflower.PlantDetailFragment.Responsible" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -151,6 +154,7 @@
                     android:layout_marginEnd="8dp"
                     android:completionHint="Responsible"
                     android:text="@{viewModel.planting.responsible}"
+                    app:responsibleComplete="@{viewModel}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/plant_watering" />

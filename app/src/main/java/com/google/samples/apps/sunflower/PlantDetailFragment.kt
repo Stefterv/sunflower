@@ -32,6 +32,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.samples.apps.sunflower.PlantDetailFragment.Callback
+import com.google.samples.apps.sunflower.data.GardenPlanting
 import com.google.samples.apps.sunflower.data.Plant
 import com.google.samples.apps.sunflower.databinding.FragmentPlantDetailBinding
 import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModel
@@ -65,6 +66,12 @@ class PlantDetailFragment : Fragment() {
                     plantDetailViewModel.addPlantToGarden()
                     Snackbar.make(root, R.string.added_plant_to_garden, Snackbar.LENGTH_LONG)
                         .show()
+                }
+            }
+            responsible = Responsible { responsible ->
+                var planting = plantDetailViewModel.planting.value
+                planting?.let {
+                    plantDetailViewModel.updatePlantOwner(planting)
                 }
             }
 
@@ -154,4 +161,12 @@ class PlantDetailFragment : Fragment() {
     fun interface Callback {
         fun add(plant: Plant?)
     }
+    fun interface Update{
+        fun update(planting: GardenPlanting?)
+    }
+    fun interface Responsible{
+        fun update(responsible: String)
+    }
+
+
 }

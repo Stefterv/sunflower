@@ -55,7 +55,7 @@ data class GardenPlanting(
     val lastWateringDate: Calendar = Calendar.getInstance(),
 
     @ColumnInfo(name = "responsible")
-    val responsible: String = ""
+    var responsible: String = ""
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
